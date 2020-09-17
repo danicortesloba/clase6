@@ -6,15 +6,12 @@ function login() {
 const username = prompt('Ingrese nombre de usuario')
 const password = prompt('Ingrese contraseña')
     try {
-        users.forEach(function(user){
-            if(user.usuario == username && user.contraseña == password && user.activo == true){
-                console.log(`Bienvenido ${user.nombre}`)
-                
-            } else{ 
-                //To do: ¿Por qué siempre se muestra este error?: Porque está dentro del for each.
-                console.log('Error en el login')
-            }
-        })
+       const u =  users.find(user => user.usuario == username && user.contraseña == password && user.activo == true)
+        if(users.includes(u)){
+            console.log("usuario loggeado")
+        } else {
+            console.log("error en el login")
+        }
     } catch (reason) {
         alert(reason);
     }
@@ -30,36 +27,31 @@ function register(){
     person.contraseña = prompt("¿Cual es tu contraseña")
     person.activo = true
 
-    users.forEach(function(user){
-        if(user.usuario.includes(person.usuario)){
-            console.log("Ese usuario ya existe")
-        }else{
-            //To do: sacar el push del For each
-            users.push(person)
-        }   
-    })
+    const u =  users.find(user => user.usuario == person.usuario)
+    if(users.includes(u)){
+        console.log("Ese usuario ya existe")
+    } else {
+        users.push(person)
+        console.log(users)
+    }        
+    
 }
 
 
 function update(){
     const usernameToUpdate = prompt("¿Qué usuario quieres modificar?")
-    users.forEach(function(user){
-        if(!user.usuario.includes(usernameToUpdate)){
-            //To do: ¿Por qué siempre se muestra este error?
-            console.log("Ese usuario no existe")
-        }
-        
-        if(user.usuario == usernameToUpdate){
-            user.nombre = prompt("¿Cual es tu nombre?")
-            user.apellido = prompt("¿Cual es tu apellido")
-            user.email = prompt("¿Cual es tu email")
-            user.usuario = prompt("¿Cual es tu nombre de usuario?")
-            user.contraseña = prompt("¿Cual es tu contraseña")
-            user.activo = true
-        }   
-    })
+    const u =  users.find(user => user.usuario == usernameToUpdate)
+    if(!users.includes(u)){
+        console.log("Ese usuario no existe")
+    } else {
+            u.nombre= prompt("¿Cual es tu nombre?")
+            u.apellido = prompt("¿Cual es tu apellido")
+            u.email = prompt("¿Cual es tu email")
+            u.usuario = prompt("¿Cual es tu nombre de usuario?")
+            u.contraseña = prompt("¿Cual es tu contraseña")
+            u.activo = true
+    } 
+ 
     console.log(users)
 }
-login()
-register()
 update()
