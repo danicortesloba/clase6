@@ -51,7 +51,6 @@ function register() {
     console.log("Ese usuario ya existe");
   } else {
     users.push(person);
-    console.log(users);
   }
 }
 
@@ -71,8 +70,9 @@ function update() {
     u.contraseña = prompt("¿Cual es tu contraseña");
     u.activo = true;
   }
-
-  console.log(users);
 }
 
+login();
+register();
 update();
+console.log(users);
