@@ -2,7 +2,7 @@
 const users = [{nombre: "Juanito", apellido: "Perez", email: "juanito@perez.com", usuario: "juanito", contraseña: "12345", activo: true},
 {nombre: "Pepito", apellido: "Perez", email: "pepito@perez.com", usuario: "pepito", contraseña: "12345", activo: false}];
 
-function login() {
+const login = () => {
 const username = prompt('Ingrese nombre de usuario')
 const password = prompt('Ingrese contraseña')
     try {
@@ -17,7 +17,7 @@ const password = prompt('Ingrese contraseña')
     }
 }
 
-function register(){
+const register = () => {
     const person = new Object();
     person.nombre = prompt("¿Cual es tu nombre?")
     person.apellido = prompt("¿Cual es tu apellido")
@@ -36,7 +36,7 @@ function register(){
 }
 
 
-function update(){
+const update = () =>{
     const usernameToUpdate = prompt("¿Qué usuario quieres modificar?")
     const u =  users.find(user => user.usuario == usernameToUpdate)
     if(!users.includes(u)){
